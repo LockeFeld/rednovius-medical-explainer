@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rednovius Carousel — 10 Slides</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* EXACT REDNOVIUS BRAND — matches lockefeld.github.io/rednovius-medical-explainer */
+:root {
+  --navy:   #0D1B2A;  /* text, headings */
+  --blue:   #404E99;  /* CTAs, buttons, chips */
+  --red:    #DD1B40;  /* logo accent, stat numbers, slide 10 bg */
+  --white:  #FFFFFF;
+  --off:    #F4F6FA;  /* section backgrounds */
+  --border: #DDE1EC;
+  --muted:  #5A6580;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #F0F2F7;
+  font-family: 'DM Sans', sans-serif;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+.slide-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  margin-left: calc(50% - 270px);
+  margin-bottom: -18px;
+}
+
+/* === BASE SLIDE — 540×540 (50% of 1080×1080) === */
+.slide {
+  width: 540px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(13,27,42,.15);
+  flex-shrink: 0;
+}
+
+/* === SHARED === */
+.logo {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -.3px;
+  z-index: 10;
+}
+.logo .r { color: var(--red); }
+.logo .n { color: var(--navy); }
+.logo-white .r { color: rgba(255,255,255,.9); }
+.logo-white .n { color: rgba(255,255,255,.9); }
+
+.slide-num {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  z-index: 10;
+}
+.num-dark { color: rgba(13,27,42,.3); }
+.num-light { color: rgba(255,255,255,.35); }
+
+.swipe {
+  position: absolute;
+  bottom: 24px;
+  right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* top accent bar */
+.accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--red);
+  z-index: 5;
+}
+
+/* section label pill */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--off);
+  border: 1px solid var(--border);
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+}
+.pill::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+/* ==============================
+   SLIDE 1 — Hook (WHITE)
+============================== */
+.s1 { background: var(--white); }
+.s1-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--red);
+}
+.s1-c {
+  position: absolute;
+  inset: 0;
+  padding: 48px 40px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.s1-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.s1-eyebrow::before { content: ''; width: 18px; height: 2px; background: var(--blue); border-radius: 1px; }
+.s1-h1 {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--navy);
+  letter-spacing: -1px;
+  margin-bottom: 18px;
+}
+.s1-h1 em { color: var(--red); font-style: normal; }
+.s1-body {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 360px;
+  margin-bottom: 24px;
+}
+.s1-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.s1-stat span { color: var(--red); }
+
+/* ==============================
+   SLIDE 2 — 83s (NAVY STAT)
+============================== */
+.s2 { background: var(--navy); }
+.s2-c {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+.s2-big {
+  font-size: 128px;
+  font-weight: 900;
+  line-height: .9;
+  color: var(--red);
+  letter-spacing: -5px;
+}
+.s2-unit { font-size: 56px; letter-spacing: -2px; color: rgba(255,255,255,.5); }
+.s2-sub {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin: 14px 0 20px;
+}
+.s2-divider { width: 36px; height: 2px; background: var(--red); border-radius: 1px; margin: 0 auto 18px; }
+.s2-body { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.65; max-width: 320px; }
+.s2-body strong { color: white; font-weight: 700; }
+
+/* ==============================
+   SLIDE 3 — Bar Chart (WHITE)
+============================== */
+.s3 { background: var(--white); }
+.s3-c {
+  position: absolute;
+  inset: 0;
+  padding: 44px 40px 56px;
+  display: flex;
+  flex-direction: column;
+}
+.s3-title { font-size: 20px; font-weight: 800; color: var(--navy); letter-spacing: -.3px; margin-bottom: 32px; }
+.s3-bars { display: flex; gap: 32px; flex: 1; align-items: flex-end; padding-bottom: 8px; }
+.s3-group { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
+.s3-pct { font-size: 36px; font-weight: 900; letter-spacing: -1px; margin-bottom: 4px; }
+.s3-pct.red { color: var(--red); }
+.s3-pct.grey { color: var(--border); }
+.s3-bar-wrap { width: 100%; display: flex; justify-content: center; align-items: flex-end; }
+.s3-bar { width: 90px; border-radius: 6px 6px 0 0; }
+.s3-bar.high { height: 200px; background: var(--red); }
+.s3-bar.low { height: 46px; background: var(--border); }
+.s3-lbl { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; text-align: center; line-height: 1.4; margin-top: 10px; }
+.s3-note { font-size: 11px; color: var(--border); text-align: center; margin-top: 14px; }
+
+/* ==============================
+   SLIDE 4 — Definition (WHITE)
+============================== */
+.s4 { background: var(--white); }
+.s4-c {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 40px 56px;
+  text-align: center;
+}
+.s4-card {
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+.s4-card-title { font-size: 16px; font-weight: 800; color: var(--navy); letter-spacing: -.3px; margin-bottom: 12px; }
+.s4-def { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.s4-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.s4-tag {
+  background: rgba(64,78,153,.08);
+  border: 1px solid rgba(64,78,153,.2);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 13px;
+  border-radius: 99px;
+  letter-spacing: .03em;
+}
+
+/* ==============================
+   SLIDES 5-7 — Use Cases (WHITE)
+============================== */
+.s-uc { background: var(--white); }
+.s-uc-c {
+  position: absolute;
+  inset: 0;
+  padding: 48px 40px 56px;
+  display: flex;
+  flex-direction: column;
+}
+.uc-num { font-size: 10px; font-weight: 700; color: var(--red); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+.uc-title { font-size: 30px; font-weight: 900; color: var(--navy); letter-spacing: -.8px; line-height: 1.1; margin-bottom: 16px; }
+.uc-body { font-size: 14px; color: var(--muted); line-height: 1.65; max-width: 360px; margin-bottom: 24px; flex: 1; }
+.uc-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.uc-chip {
+  background: rgba(64,78,153,.07);
+  border: 1px solid rgba(64,78,153,.2);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 13px;
+  border-radius: 99px;
+  letter-spacing: .03em;
+}
+/* divider line for use case slides */
+.uc-divider { width: 36px; height: 3px; background: var(--red); border-radius: 2px; margin-bottom: 20px; }
+
+/* ==============================
+   SLIDE 8 — 3x (NAVY STAT)
+============================== */
+.s8 { background: var(--navy); }
+.s8-c {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+.s8-big { font-size: 128px; font-weight: 900; line-height: .9; color: var(--red); letter-spacing: -5px; display: flex; align-items: baseline; gap: 4px; }
+.s8-x { font-size: 64px; color: rgba(255,255,255,.4); letter-spacing: -2px; }
+.s8-sub { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.4); margin: 14px 0 20px; }
+.s8-divider { width: 36px; height: 2px; background: var(--red); margin: 0 auto 18px; border-radius: 1px; }
+.s8-body { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.65; max-width: 320px; }
+
+/* ==============================
+   SLIDE 9 — Three Pillars (WHITE)
+============================== */
+.s9 { background: var(--white); }
+.s9-c {
+  position: absolute;
+  inset: 0;
+  padding: 44px 36px 56px;
+  display: flex;
+  flex-direction: column;
+}
+.s9-title { font-size: 22px; font-weight: 900; color: var(--navy); letter-spacing: -.4px; margin-bottom: 26px; }
+.s9-cols { display: flex; gap: 14px; flex: 1; }
+.s9-col {
+  flex: 1;
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 3px solid var(--red);
+}
+.s9-col-title { font-size: 13px; font-weight: 800; color: var(--navy); letter-spacing: -.2px; line-height: 1.3; }
+.s9-col-body { font-size: 11px; color: var(--muted); line-height: 1.55; }
+
+/* ==============================
+   SLIDE 10 — CTA (RED BG)
+============================== */
+.s10 { background: var(--red); }
+.s10::before {
+  content: '';
+  position: absolute;
+  bottom: -120px; right: -120px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,0,0,.15), transparent 65%);
+}
+.s10-c {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 40px;
+  text-align: center;
+  z-index: 1;
+}
+.s10-logo-text { font-size: 13px; font-weight: 800; color: rgba(255,255,255,.6); margin-bottom: 24px; }
+.s10-h { font-size: 26px; font-weight: 900; color: white; letter-spacing: -.6px; line-height: 1.2; margin-bottom: 12px; }
+.s10-sub { font-size: 13px; color: rgba(255,255,255,.75); line-height: 1.6; margin-bottom: 28px; max-width: 320px; }
+.s10-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 13px 28px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+.s10-url { font-size: 11px; color: rgba(255,255,255,.55); letter-spacing: .03em; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<div class="slide-label">1 / 10 — Hook</div>
+<div class="slide s1">
+  <div class="accent-bar"></div>
+  <div class="s1-c">
+    <div class="s1-eyebrow">Medical Affairs · Video</div>
+    <div class="s1-h1">Your data gets <em>ignored.</em><br>Here is why.</div>
+    <div class="s1-body">Medical Affairs teams create brilliant clinical evidence. Then bury it in 40-slide decks nobody opens or remembers.</div>
+    <div class="s1-stat"><span>83s</span> average congress poster view time</div>
+  </div>
+  <div class="logo"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-dark">1 / 10</div>
+  <div class="swipe">Swipe →</div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide-label">2 / 10 — 83 Seconds</div>
+<div class="slide s2">
+  <div class="s2-c">
+    <div class="s2-big">83<span class="s2-unit">s</span></div>
+    <div class="s2-sub">Average congress poster view time</div>
+    <div class="s2-divider"></div>
+    <div class="s2-body">That is how long an HCP spends at your congress poster. Your <strong>six-month data story</strong> has 83 seconds to land.</div>
+  </div>
+  <div class="logo logo-white"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-light">2 / 10</div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide-label">3 / 10 — Retention Science</div>
+<div class="slide s3">
+  <div class="accent-bar"></div>
+  <div class="s3-c">
+    <div class="s3-title">Visuals are remembered. Text is not.</div>
+    <div class="s3-bars">
+      <div class="s3-group">
+        <div class="s3-pct red">65%</div>
+        <div class="s3-bar-wrap"><div class="s3-bar high"></div></div>
+        <div class="s3-lbl">Visual<br>content</div>
+      </div>
+      <div class="s3-group">
+        <div class="s3-pct grey">10%</div>
+        <div class="s3-bar-wrap"><div class="s3-bar low"></div></div>
+        <div class="s3-lbl">Text<br>only</div>
+      </div>
+    </div>
+    <div class="s3-note">HCP retention after 3 days</div>
+  </div>
+  <div class="logo"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-dark">3 / 10</div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide-label">4 / 10 — Definition</div>
+<div class="slide s4">
+  <div class="accent-bar"></div>
+  <div class="s4-c">
+    <div class="pill">Medical Explainer Video</div>
+    <div class="s4-card">
+      <div class="s4-card-title">A 60–90 second visual narrative of your clinical data</div>
+      <div class="s4-def">Clinically accurate. MLR-ready. Designed for Medical Affairs — not patients, not sales.</div>
+    </div>
+    <div class="s4-tags">
+      <span class="s4-tag">60–90 seconds</span>
+      <span class="s4-tag">MLR-ready</span>
+      <span class="s4-tag">Medical Affairs-native</span>
+    </div>
+  </div>
+  <div class="logo"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-dark">4 / 10</div>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide-label">5 / 10 — Medical Congresses</div>
+<div class="slide s-uc">
+  <div class="accent-bar"></div>
+  <div class="s-uc-c">
+    <div class="uc-num">Use case 01</div>
+    <div class="uc-divider"></div>
+    <div class="uc-title">Medical<br>Congresses</div>
+    <div class="uc-body">Play it at your booth. Embed in symposia. Send as post-congress digital follow-up. One asset, three high-impact touchpoints.</div>
+    <div class="uc-chips">
+      <span class="uc-chip">Booth display</span>
+      <span class="uc-chip">Symposia</span>
+      <span class="uc-chip">Post-congress digital</span>
+    </div>
+  </div>
+  <div class="logo"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-dark">5 / 10</div>
+</div>
+
+<!-- SLIDE 6 -->
+<div class="slide-label">6 / 10 — MSL Enablement</div>
+<div class="slide s-uc">
+  <div class="accent-bar"></div>
+  <div class="s-uc-c">
+    <div class="uc-num">Use case 02</div>
+    <div class="uc-divider"></div>
+    <div class="uc-title">MSL Field<br>Enablement</div>
+    <div class="uc-body">Pre-call refresher for your MSLs. iPad visual aid during HCP meetings. Follow-up asset that actually gets opened and shared.</div>
+    <div class="uc-chips">
+      <span class="uc-chip">Pre-call</span>
+      <span class="uc-chip">iPad meetings</span>
+      <span class="uc-chip">HCP follow-up</span>
+    </div>
+  </div>
+  <div class="logo"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-dark">6 / 10</div>
+</div>
+
+<!-- SLIDE 7 -->
+<div class="slide-label">7 / 10 — Payer Communications</div>
+<div class="slide s-uc">
+  <div class="accent-bar"></div>
+  <div class="s-uc-c">
+    <div class="uc-num">Use case 03</div>
+    <div class="uc-divider"></div>
+    <div class="uc-title">Payer<br>Communications</div>
+    <div class="uc-body">Embed in payer dossiers. Present at P&T committee meetings. Strengthen your evidence narrative where reimbursement decisions happen.</div>
+    <div class="uc-chips">
+      <span class="uc-chip">AMCP dossiers</span>
+      <span class="uc-chip">P&T committees</span>
+      <span class="uc-chip">Value evidence</span>
+    </div>
+  </div>
+  <div class="logo"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-dark">7 / 10</div>
+</div>
+
+<!-- SLIDE 8 -->
+<div class="slide-label">8 / 10 — 3x Sharing</div>
+<div class="slide s8">
+  <div class="s8-c">
+    <div class="s8-big">3<span class="s8-x">×</span></div>
+    <div class="s8-sub">Higher HCP sharing rate</div>
+    <div class="s8-divider"></div>
+    <div class="s8-body">Visual content gets shared by HCPs three times more than text-based materials across portals and digital channels.</div>
+  </div>
+  <div class="logo logo-white"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-light">8 / 10</div>
+</div>
+
+<!-- SLIDE 9 -->
+<div class="slide-label">9 / 10 — Three Pillars</div>
+<div class="slide s9">
+  <div class="accent-bar"></div>
+  <div class="s9-c">
+    <div class="s9-title">What makes a great medical explainer video?</div>
+    <div class="s9-cols">
+      <div class="s9-col">
+        <div class="s9-col-title">MLR-Ready</div>
+        <div class="s9-col-body">Built for compliance from day one. Annotated scripts, reference support, review cycles built in.</div>
+      </div>
+      <div class="s9-col">
+        <div class="s9-col-title">60–90 Seconds</div>
+        <div class="s9-col-body">Tight enough for HCP attention spans. Long enough to communicate your primary endpoint.</div>
+      </div>
+      <div class="s9-col">
+        <div class="s9-col-title">MA-Native</div>
+        <div class="s9-col-body">Not patient education. Not sales. Built for Medical Affairs scientific exchange standards.</div>
+      </div>
+    </div>
+  </div>
+  <div class="logo"><span class="r">Red</span><span class="n">Novius</span></div>
+  <div class="slide-num num-dark">9 / 10</div>
+</div>
+
+<!-- SLIDE 10 -->
+<div class="slide-label">10 / 10 — CTA</div>
+<div class="slide s10">
+  <div class="s10-c">
+    <div class="s10-logo-text">RedNovius</div>
+    <div class="s10-h">See your data as a medical explainer video.</div>
+    <div class="s10-sub">We will turn your next MOA, clinical trial, or congress poster into a 90-second visual narrative.</div>
+    <div class="s10-btn">Book a Demo →</div>
+    <div class="s10-url">rednovius.com/talk-to-sales</div>
+  </div>
+  <div class="slide-num" style="color:rgba(255,255,255,.3);position:absolute;top:24px;right:28px;font-size:11px;font-weight:600;">10 / 10</div>
+</div>
+
+</body>
+</html>
