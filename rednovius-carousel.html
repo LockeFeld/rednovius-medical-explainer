@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rednovius LinkedIn Carousel — 10 Slides</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── CONFIRMED REDNOVIUS BRAND COLORS ── */
+:root {
+  --navy:   #0D1B2A;
+  --blue:   #404E99;
+  --red:    #DD1B40;
+  --white:  #FFFFFF;
+  --grey:   #8A9BB0;
+  --light:  #E8ECF2;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #1a1a2e;
+  font-family: 'Inter', sans-serif;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+/* ── SLIDE WRAPPER — exactly 1080×1080 scaled to 540×540 for screen ── */
+.slide-label {
+  color: rgba(255,255,255,.4);
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  margin-left: calc(50% - 270px);
+}
+
+.slide {
+  width: 540px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  /* All text scaled at 50% since slides are 540px = 50% of 1080px */
+}
+
+/* ── SHARED ELEMENTS ── */
+.logo-mark {
+  position: absolute;
+  bottom: 28px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: -.3px;
+  z-index: 10;
+}
+.logo-r { color: var(--red); }
+.logo-n { color: white; }
+
+.slide-num {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,.3);
+  letter-spacing: .05em;
+  z-index: 10;
+}
+
+.swipe-hint {
+  position: absolute;
+  bottom: 28px;
+  right: 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,.35);
+  letter-spacing: .03em;
+}
+
+/* ══════════════════════════════════
+   SLIDE 1 — Hook
+══════════════════════════════════ */
+.s1 {
+  background: var(--navy);
+}
+.s1::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(221,27,64,.15), transparent 70%);
+}
+.s1-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--red);
+}
+.s1-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px 40px 56px;
+}
+.s1-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.s1-eyebrow::before {
+  content: '';
+  width: 20px; height: 2px;
+  background: var(--red);
+  border-radius: 1px;
+}
+.s1-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--white);
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+.s1-headline span { color: var(--red); }
+.s1-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  max-width: 340px;
+}
+.s1-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  background: rgba(221,27,64,.12);
+  border: 1px solid rgba(221,27,64,.3);
+  border-radius: 99px;
+  padding: 7px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,.7);
+  letter-spacing: .03em;
+}
+.s1-stat-pill::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+/* ══════════════════════════════════
+   SLIDE 2 — 83 seconds
+══════════════════════════════════ */
+.s2 {
+  background: var(--navy);
+}
+.s2-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+.s2-big {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 120px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--red);
+  letter-spacing: -4px;
+}
+.s2-unit {
+  font-size: 48px;
+  letter-spacing: -1px;
+}
+.s2-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+.s2-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,.7);
+  line-height: 1.65;
+  max-width: 340px;
+}
+.s2-body strong {
+  color: var(--white);
+  font-weight: 700;
+}
+.s2-divider {
+  width: 40px; height: 2px;
+  background: var(--red);
+  border-radius: 1px;
+  margin: 0 auto 20px;
+}
+
+/* ══════════════════════════════════
+   SLIDE 3 — 65% vs 10%
+══════════════════════════════════ */
+.s3 {
+  background: var(--navy);
+}
+.s3-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 56px;
+}
+.s3-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -.3px;
+  margin-bottom: 32px;
+}
+.s3-bars {
+  display: flex;
+  gap: 28px;
+  flex: 1;
+  align-items: flex-end;
+  padding-bottom: 16px;
+}
+.s3-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+.s3-bar-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.s3-bar {
+  width: 80px;
+  border-radius: 6px 6px 0 0;
+}
+.s3-bar.high {
+  height: 220px;
+  background: var(--red);
+}
+.s3-bar.low {
+  height: 50px;
+  background: rgba(255,255,255,.2);
+}
+.s3-pct {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  letter-spacing: -1px;
+  margin-bottom: 6px;
+}
+.s3-pct.red { color: var(--red); }
+.s3-pct.grey { color: rgba(255,255,255,.4); }
+.s3-bar-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,.5);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  line-height: 1.4;
+}
+.s3-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════
+   SLIDE 4 — Definition
+══════════════════════════════════ */
+.s4 {
+  background: var(--navy);
+}
+.s4-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 40px 56px;
+  text-align: center;
+}
+.s4-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+}
+.s4-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  padding: 28px 32px;
+  max-width: 380px;
+}
+.s4-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 14px;
+  letter-spacing: -.2px;
+}
+.s4-def {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.7;
+}
+.s4-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.s4-tag {
+  background: rgba(221,27,64,.15);
+  border: 1px solid rgba(221,27,64,.3);
+  color: rgba(255,255,255,.8);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 99px;
+  letter-spacing: .03em;
+}
+
+/* ══════════════════════════════════
+   SLIDES 5–7 — Use Cases
+══════════════════════════════════ */
+.s-usecase {
+  background: var(--navy);
+}
+.s-uc-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 40px 56px;
+}
+.s-uc-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--red);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.s-uc-icon { display: none; }
+.s-uc-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -.6px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.s-uc-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.65;
+  max-width: 360px;
+  margin-bottom: 24px;
+}
+.s-uc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.s-uc-chip {
+  background: rgba(64,78,153,.2);
+  border: 1px solid rgba(64,78,153,.4);
+  color: rgba(255,255,255,.75);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 99px;
+  letter-spacing: .03em;
+}
+
+/* ══════════════════════════════════
+   SLIDE 8 — 3x sharing
+══════════════════════════════════ */
+.s8 { background: var(--navy); }
+.s8-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+.s8-big {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 110px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--red);
+  letter-spacing: -3px;
+}
+.s8-unit-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.s8-x {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  color: rgba(255,255,255,.6);
+  letter-spacing: -2px;
+}
+.s8-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin: 12px 0 20px;
+}
+.s8-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.65;
+  max-width: 340px;
+}
+.s8-divider {
+  width: 40px; height: 2px;
+  background: var(--red);
+  margin: 0 auto 20px;
+}
+
+/* ══════════════════════════════════
+   SLIDE 9 — Three Pillars
+══════════════════════════════════ */
+.s9 { background: var(--navy); }
+.s9-content {
+  position: absolute;
+  inset: 0;
+  padding: 44px 36px 56px;
+  display: flex;
+  flex-direction: column;
+}
+.s9-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -.4px;
+  margin-bottom: 28px;
+}
+.s9-pillars {
+  display: flex;
+  gap: 14px;
+  flex: 1;
+}
+.s9-pillar {
+  flex: 1;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color .2s;
+}
+.s9-pillar:hover { border-color: rgba(221,27,64,.4); }
+.s9-pillar-icon { display: none; }
+.s9-pillar-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -.2px;
+  line-height: 1.3;
+}
+.s9-pillar-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.55;
+}
+
+/* ══════════════════════════════════
+   SLIDE 10 — CTA
+══════════════════════════════════ */
+.s10 {
+  background: var(--red);
+}
+.s10::before {
+  content: '';
+  position: absolute;
+  bottom: -100px; right: -100px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,0,0,.2), transparent 70%);
+}
+.s10-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.s10-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: rgba(255,255,255,.7);
+  letter-spacing: -.2px;
+  margin-bottom: 28px;
+}
+.s10-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -.6px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.s10-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,.8);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 320px;
+}
+.s10-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  color: var(--red);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 14px 28px;
+  border-radius: 6px;
+  letter-spacing: -.1px;
+  margin-bottom: 20px;
+}
+.s10-btn svg {
+  width: 14px; height: 14px;
+}
+.s10-url {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .03em;
+}
+
+/* ── PRINT / SCREENSHOT HELPER ── */
+.instructions {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  padding: 20px 28px;
+  max-width: 540px;
+  color: rgba(255,255,255,.6);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 16px;
+}
+.instructions strong { color: rgba(255,255,255,.9); display: block; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- INSTRUCTIONS -->
+<div class="instructions">
+  <strong>How to use these slides</strong>
+  Each slide is exactly 540×540px (50% of 1080×1080 LinkedIn format). To use in Canva:<br>
+  1. Take a screenshot of each slide at 2× screen resolution → they'll be 1080×1080px<br>
+  2. Or: open Canva → 1080×1080 → recreate each slide using the exact copy and colors below<br>
+  Brand colors: Navy <code>#0D1B2A</code> · Blue <code>#404E99</code> · Red <code>#DD1B40</code> · White <code>#FFFFFF</code><br>
+  Fonts: Montserrat Bold/Black for headlines · Inter Regular for body
+</div>
+
+<!-- SLIDE 1 -->
+<div class="slide-label">Slide 1 of 10 — Hook</div>
+<div class="slide s1">
+  <div class="s1-accent"></div>
+  <div class="s1-content">
+    <div class="s1-eyebrow">Medical Affairs · Video</div>
+    <div class="s1-headline">Your data gets <span>ignored.</span><br>Here is why.</div>
+    <div class="s1-sub">Medical Affairs teams create brilliant clinical evidence. Then bury it in 40-slide decks nobody opens or remembers.</div>
+    <div class="s1-stat-pill">83 seconds: average congress poster view time</div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">1 / 10</div>
+  <div class="swipe-hint">Swipe →</div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide-label">Slide 2 of 10 — 83 Seconds</div>
+<div class="slide s2">
+  <div class="s2-content">
+    <div class="s2-big">83<span class="s2-unit">s</span></div>
+    <div class="s2-label">Average congress poster view time</div>
+    <div class="s2-divider"></div>
+    <div class="s2-body">That is how long an HCP spends at your congress poster. Your <strong>six-month data story</strong> has 83 seconds to land.</div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">2 / 10</div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide-label">Slide 3 of 10 — Retention Science</div>
+<div class="slide s3">
+  <div class="s3-content">
+    <div class="s3-title">Visuals are remembered. Text is not.</div>
+    <div class="s3-bars">
+      <div class="s3-bar-group">
+        <div class="s3-pct red">65%</div>
+        <div class="s3-bar-wrap">
+          <div class="s3-bar high"></div>
+        </div>
+        <div class="s3-bar-label">Visual<br>content</div>
+      </div>
+      <div class="s3-bar-group">
+        <div class="s3-pct grey">10%</div>
+        <div class="s3-bar-wrap">
+          <div class="s3-bar low"></div>
+        </div>
+        <div class="s3-bar-label">Text<br>only</div>
+      </div>
+    </div>
+    <div class="s3-caption">HCP retention after 3 days · Visual vs text formats</div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">3 / 10</div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide-label">Slide 4 of 10 — Definition</div>
+<div class="slide s4">
+  <div class="s4-content">
+    <div class="s4-eyebrow">What is a medical explainer video?</div>
+    <div class="s4-card">
+      <div class="s4-card-title">A 60–90 second visual narrative of your clinical data</div>
+      <div class="s4-def">Clinically accurate. MLR-ready. Designed for HCP audiences — not patients, not sales teams. Built for Medical Affairs.</div>
+    </div>
+    <div class="s4-tags">
+      <span class="s4-tag">60–90 seconds</span>
+      <span class="s4-tag">MLR-ready</span>
+      <span class="s4-tag">Medical Affairs-native</span>
+    </div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">4 / 10</div>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide-label">Slide 5 of 10 — Use Case: Congresses</div>
+<div class="slide s-usecase">
+  <div class="s-uc-content">
+    <div class="s-uc-num">Use case 01</div>
+    
+    <div class="s-uc-title">Medical<br>Congresses</div>
+    <div class="s-uc-body">Play it at your booth. Embed in symposia. Send as post-congress digital follow-up. One asset, three high-impact touchpoints.</div>
+    <div class="s-uc-chips">
+      <span class="s-uc-chip">Booth display</span>
+      <span class="s-uc-chip">Symposia</span>
+      <span class="s-uc-chip">Post-congress digital</span>
+    </div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">5 / 10</div>
+</div>
+
+<!-- SLIDE 6 -->
+<div class="slide-label">Slide 6 of 10 — Use Case: MSL</div>
+<div class="slide s-usecase">
+  <div class="s-uc-content">
+    <div class="s-uc-num">Use case 02</div>
+    
+    <div class="s-uc-title">MSL Field<br>Enablement</div>
+    <div class="s-uc-body">Pre-call refresher for your MSLs. iPad visual aid during HCP meetings. Follow-up asset that actually gets opened and shared.</div>
+    <div class="s-uc-chips">
+      <span class="s-uc-chip">Pre-call</span>
+      <span class="s-uc-chip">iPad meetings</span>
+      <span class="s-uc-chip">HCP follow-up</span>
+    </div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">6 / 10</div>
+</div>
+
+<!-- SLIDE 7 -->
+<div class="slide-label">Slide 7 of 10 — Use Case: Payer</div>
+<div class="slide s-usecase">
+  <div class="s-uc-content">
+    <div class="s-uc-num">Use case 03</div>
+    
+    <div class="s-uc-title">Payer<br>Communications</div>
+    <div class="s-uc-body">Embed in payer dossiers. Present at P&T committee meetings. Strengthen your evidence narrative where reimbursement decisions happen.</div>
+    <div class="s-uc-chips">
+      <span class="s-uc-chip">AMCP dossiers</span>
+      <span class="s-uc-chip">P&T committees</span>
+      <span class="s-uc-chip">Value evidence</span>
+    </div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">7 / 10</div>
+</div>
+
+<!-- SLIDE 8 -->
+<div class="slide-label">Slide 8 of 10 — 3x Sharing</div>
+<div class="slide s8">
+  <div class="s8-content">
+    <div class="s8-unit-row">
+      <div class="s8-big">3</div>
+      <div class="s8-x">×</div>
+    </div>
+    <div class="s8-sub">Higher HCP sharing rate</div>
+    <div class="s8-divider"></div>
+    <div class="s8-body">Add to your omnichannel platforms and HCP portals. Visual content gets shared by HCPs three times more than text-based materials.</div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">8 / 10</div>
+</div>
+
+<!-- SLIDE 9 -->
+<div class="slide-label">Slide 9 of 10 — Three Pillars</div>
+<div class="slide s9">
+  <div class="s9-content">
+    <div class="s9-title">What makes a great one?</div>
+    <div class="s9-pillars">
+      <div class="s9-pillar">
+        
+        <div class="s9-pillar-title">MLR-Ready</div>
+        <div class="s9-pillar-desc">Built for compliance from day one. Annotated scripts, reference support, review cycles built in.</div>
+      </div>
+      <div class="s9-pillar">
+        
+        <div class="s9-pillar-title">60–90 Seconds</div>
+        <div class="s9-pillar-desc">Tight enough for HCP attention spans. Long enough to communicate your primary endpoint clearly.</div>
+      </div>
+      <div class="s9-pillar">
+        
+        <div class="s9-pillar-title">MA-Native</div>
+        <div class="s9-pillar-desc">Not patient education. Not sales. Built for Medical Affairs standards and scientific exchange.</div>
+      </div>
+    </div>
+  </div>
+  <div class="logo-mark"><span class="logo-r">Red</span><span class="logo-n">Novius</span></div>
+  <div class="slide-num">9 / 10</div>
+</div>
+
+<!-- SLIDE 10 -->
+<div class="slide-label">Slide 10 of 10 — CTA</div>
+<div class="slide s10">
+  <div class="s10-content">
+    <div class="s10-logo">RedNovius</div>
+    <div class="s10-headline">See your data as a medical explainer video.</div>
+    <div class="s10-sub">We will turn your next MOA, clinical trial, or congress poster into a 90-second visual narrative.</div>
+    <div class="s10-btn">
+      Book a Demo
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="s10-url">rednovius.com/talk-to-sales</div>
+  </div>
+  <div class="slide-num" style="color:rgba(255,255,255,.4)">10 / 10</div>
+</div>
+
+</body>
+</html>
